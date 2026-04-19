@@ -136,20 +136,10 @@ const legalActivities = [
 
 const peche = [
   "Pour commencer, il faut acheter une canne à pêche dans les LTD de la ville.",
-  "La canne en bois est vendue au LTD du Sud pour 200 000 $.",
-  "La canne en aluminium est vendue au LTD du Nord pour 1 000 000 $.",
-  "Les appâts existent en plusieurs types : eau douce, tropical et mer.",
-  "Chaque type d’appât correspond à une zone de pêche spécifique.",
-  "Un PNJ “Pêcheur Expert” permet de consulter le type de zone, le type d’appât, les crafts, l’aide et le profil pêcheur.",
-];
-
-const acier = [
-  "L’activité acier repose sur trois types de points : récolte, traitement et vente.",
-  "Pour commencer, il faut se rendre sur un point de récolte acier.",
-  "Une fois sur place, il faut appuyer sur E pour lancer la récolte.",
-  "Après la récolte, il faut se rendre sur un point de traitement acier.",
-  "La dernière étape consiste à se rendre sur un point de vente acier.",
-];
+  "La canne en bois est vendue dans tout les Ltd pour 250 000 $.",
+  "La canne en aluminium est vendue dans tout les Ltd pour 900 000 $.",
+  "La canne Urban est vendue dans tout les Ltd pour 1 200 000 $.",
+;
 
 const scierie = [
   "L’activité scierie fonctionne avec un système de récolte de bois.",
