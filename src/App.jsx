@@ -349,10 +349,6 @@ export default function App() {
             <RuleCard title="Pêche" items={peche} />
           </section>
 
-          <section id="acier" className="mb-8">
-            <RuleCard title="Acier" items={acier} />
-          </section>
-
           <section id="scierie" className="mb-8">
             <RuleCard title="Scierie" items={scierie} />
           </section>
