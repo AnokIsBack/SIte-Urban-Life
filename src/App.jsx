@@ -1,326 +1,251 @@
 import { motion } from "framer-motion";
 
+const navGroups = [
+  {
+    title: "Accueil",
+    items: [{ href: "#accueil", label: "Accueil", icon: "🏠" }],
+  },
+  {
+    title: "Règlement Légal",
+    items: [
+      { href: "#legal-home", label: "Vue d’ensemble", icon: "⚖️" },
+      { href: "#lspd", label: "LSPD / BCSO", icon: "👮" },
+      { href: "#ems", label: "EMS", icon: "🚑" },
+      { href: "#entreprise", label: "Entreprise", icon: "🏢" },
+      { href: "#activites-legales", label: "Activités légales", icon: "🎣" },
+      { href: "#peche", label: "Pêche", icon: "🐟" },
+      { href: "#acier", label: "Acier", icon: "🪨" },
+      { href: "#scierie", label: "Scierie", icon: "🪵" },
+      { href: "#course", label: "Course", icon: "🏁" },
+    ],
+  },
+  {
+    title: "Règlement Illégal",
+    items: [
+      { href: "#illegal-home", label: "Vue d’ensemble", icon: "🔫" },
+      { href: "#illegal-general", label: "Règlement illégal", icon: "⚠️" },
+      { href: "#iles", label: "Les îles", icon: "🏝️" },
+      { href: "#activites-illegales", label: "Activités illégales", icon: "💀" },
+      { href: "#drogues", label: "Drogues", icon: "🧪" },
+      { href: "#pacific", label: "Braquage Pacific", icon: "🏦" },
+      { href: "#bijouterie", label: "Bijouterie", icon: "💎" },
+      { href: "#superettes", label: "Supérettes", icon: "🛒" },
+      { href: "#carjack", label: "Carjack", icon: "🚗" },
+      { href: "#fourgon", label: "Fourgon", icon: "🚚" },
+      { href: "#cambriolage", label: "Cambriolage", icon: "🏚️" },
+    ],
+  },
+];
+
+const legalCards = [
+  { href: "#lspd", title: "Règlement LSPD / BCSO", icon: "👮" },
+  { href: "#ems", title: "Règlement EMS", icon: "🚑" },
+  { href: "#entreprise", title: "Règlement Entreprise", icon: "🏢" },
+  { href: "#activites-legales", title: "Activités légales", icon: "🎣" },
+];
+
+const illegalCards = [
+  { href: "#illegal-general", title: "Règlement Illégal", icon: "⚠️" },
+  { href: "#iles", title: "Les îles", icon: "🏝️" },
+  { href: "#activites-illegales", title: "Activités illégales", icon: "💀" },
+];
+
+const lspd = {
+  tenue: [
+    "Les tenues et véhicules LSPD / BCSO sont obligatoires en service.",
+    "En civil, un signe distinctif clair doit montrer l’appartenance aux forces de l’ordre.",
+  ],
+  interdits: [
+    "Interdiction de revenir au poste en pleine scène.",
+    "Interdiction de contrôler une personne sans être en service ou sans signe distinctif clair.",
+    "Interdiction d’utiliser les armes de service hors service.",
+    "Interdiction absolue de vendre une arme LSPD / BCSO.",
+    "Interdiction de confisquer un citoyen déjà au sol.",
+    "Interdiction de laisser un individu trop longtemps en cellule sans contexte RP solide.",
+    "Interdiction d’incarner un policier corrompu sans autorisation staff.",
+    "Interdiction de garder des armes saisies pour usage personnel.",
+    "Interdiction d’utiliser des armes illégales en tant qu’agent.",
+  ],
+  cadets: [
+    "Les cadets doivent respecter le fear RP.",
+    "Les cadets ne peuvent pas avoir de casier judiciaire.",
+    "Les cadets ne peuvent pas patrouiller seuls.",
+  ],
+  fouille: [
+    "Une fouille doit toujours reposer sur un motif RP valable.",
+    "Des motifs courants existent : visage dissimulé, holster visible, gilet pare-balles, attitude menaçante, montée dans un véhicule de police.",
+    "Un simple délit de fuite ne justifie pas automatiquement une fouille complète.",
+  ],
+  poursuite: [
+    "Les pneus d’un véhicule en poursuite peuvent être visés si la situation devient réellement dangereuse.",
+    "Le PIT est encadré et ne doit jamais être utilisé de manière abusive.",
+    "Les poursuites doivent rester cohérentes et proportionnées à la scène.",
+  ],
+  ppa: [
+    "Avec sac mais sans PPA : confiscation possible des armes légères et lourdes.",
+    "Avec sac et avec PPA : pas de confiscation lors d’un contrôle routinier classique.",
+    "Sans sac et sans PPA : confiscation possible des armes légères.",
+    "Sans sac et avec PPA : pas de confiscation lors d’un contrôle routinier classique.",
+    "Si un citoyen ouvre le feu en ville, l’arme utilisée peut être confisquée.",
+  ],
+  autres: [
+    "Les agents doivent rester professionnels et éviter l’abus de pouvoir.",
+    "Les indics passent par les hauts gradés.",
+    "Le rapport de force doit rester cohérent.",
+    "Les permis et PPA doivent être vérifiés de manière RP.",
+  ],
+};
+
+const ems = [
+  "Interdiction d’utiliser son service EMS pour participer à de l’illégal.",
+  "Interdiction de vendre ou échanger medikits et bandages.",
+  "Interdiction d’intervenir sur une scène illégale pendant les tirs.",
+  "La tenue de service est obligatoire.",
+  "Le protocole d’intervention doit être respecté.",
+  "Une ATA de 10 minutes est prévue pour les morts par arme.",
+  "En fin de service, le matériel doit être rangé dans le coffre de l’entreprise.",
+];
+
+const entreprise = {
+  general: [
+    "Interdiction d’utiliser le coffre entreprise à des fins personnelles.",
+    "Interdiction de vendre ou donner son entreprise sans procédure adaptée.",
+    "Interdiction de cumuler plusieurs emplois légaux si le règlement du serveur le prohibe.",
+    "Le vol dans le coffre entreprise est interdit.",
+  ],
+  mecano: [
+    "Interdiction d’ajouter des équipements incohérents à un véhicule.",
+    "Interdiction de mettre un véhicule en fourrière sans raison ou sans autorisation adaptée.",
+    "Interdiction de déverrouiller un véhicule sans demande claire du propriétaire.",
+  ],
+  concessionnaire: [
+    "Interdiction d’offrir un véhicule gratuitement sans procédure ou autorisation.",
+    "Toute acquisition doit être cohérente et payée.",
+  ],
+  occasion: [
+    "L’acheteur doit connaître le contenu du coffre avant la vente.",
+    "Certains véhicules de fonction ne sont pas revendables librement.",
+  ],
+};
+
+const legalActivities = [
+  "La section légale inclut plusieurs activités accessibles côté civil.",
+  "Exemples visibles depuis la navigation : pêche, acier, scierie et course.",
+  "Chaque activité doit être jouée proprement, sans abus de farm ni détournement HRP.",
+];
+
+const peche = [
+  "Pour commencer, il faut acheter une canne à pêche dans les LTD de la ville.",
+  "La canne en bois est vendue au LTD du Sud pour 200 000 $.",
+  "La canne en aluminium est vendue au LTD du Nord pour 1 000 000 $.",
+  "Les appâts existent en plusieurs types : eau douce, tropical et mer.",
+  "Chaque type d’appât correspond à une zone de pêche spécifique.",
+  "Un PNJ “Pêcheur Expert” permet de consulter le type de zone, le type d’appât, les crafts, l’aide et le profil pêcheur.",
+];
+
+const acier = [
+  "L’activité acier repose sur trois types de points : récolte, traitement et vente.",
+  "Pour commencer, il faut se rendre sur un point de récolte acier.",
+  "Une fois sur place, il faut appuyer sur E pour lancer la récolte.",
+  "Après la récolte, il faut se rendre sur un point de traitement acier.",
+  "La dernière étape consiste à se rendre sur un point de vente acier.",
+];
+
+const scierie = [
+  "L’activité scierie fonctionne avec un système de récolte de bois.",
+  "Le bois doit être transformé avant d’être vendu.",
+  "Les véhicules doivent être utilisés de manière cohérente pour transporter les ressources.",
+  "Le farming en groupe doit rester réaliste et non abusif.",
+];
+
+const course = [
+  "Les courses doivent être organisées de manière RP.",
+  "Les paris doivent rester raisonnables et cohérents.",
+  "Le fair-play est obligatoire.",
+  "Les collisions volontaires sont interdites sauf si justifiées RP.",
+];
+
+const illegalGeneral = [
+  "Toute scène commencée doit être jouée jusqu’à son terme.",
+  "En cas de problème, il faut terminer la scène puis faire un ticket ou un report.",
+  "Toute personne en scène illégale doit rester masquée.",
+  "Le fear RP doit être joué obligatoirement.",
+  "Les tirs sont réservés aux personnes disposant d’un rôle illégal.",
+  "Les sommations se font avec 10 balles en l’air, hors véhicule et sans silencieux.",
+];
+
+const iles = [
+  "Le gouverneur de Cayo dispose de pouvoirs importants sur son île.",
+  "Entrer sur Cayo sans pass est interdit et expose à une mort RP.",
+  "La LSPD / BCSO ne peut pas se rendre sur Cayo.",
+  "Le groupe résidant à RoxWood peut contrôler les accès et sorties.",
+  "Les EMS sont autorisés à entrer sur RoxWood sur présentation de leur carte.",
+];
+
+const activitesIllegales = [
+  "La section activités illégales regroupe les drogues, le braquage Pacific, la bijouterie, les supérettes, le carjack, le fourgon et le cambriolage.",
+  "Chaque activité a ses propres conditions de lancement et de déroulement.",
+];
+
+const drogues = [
+  "Les points de drogue et points de vente sont centraux dans l’économie illégale.",
+  "Posséder ou revendiquer une zone passe par la vente de drogue sur cette zone.",
+  "Vendre de la drogue rapporte des points de zone au groupe et de l’argent sale au joueur.",
+  "Certaines zones de vente sont réservées à des gangs ou organisations spécifiques.",
+];
+
+const pacific = [
+  "Le braquage Pacific n’est disponible qu’avec GDOC préalable.",
+  "Sans GDOC, le braquage ne peut pas être lancé.",
+  "Un délai entre deux braquages doit être respecté.",
+];
+
+const bijouterie = [
+  "La bijouterie peut rapporter une grosse somme d’argent sale si toutes les étapes sont réussies.",
+  "Du matériel précis est nécessaire pour lancer l’activité.",
+  "Après le braquage, l’équipe doit encore gérer la fuite et la pression policière.",
+];
+
+const superettes = [
+  "Chaque supérette peut être braquée selon un délai de récupération.",
+  "Le braquage se lance en entrant avec une arme en main et en visant le caissier.",
+  "Le butin est récupéré sous forme d’argent sale.",
+];
+
+const carjack = [
+  "Le carjack consiste à voler un véhicule à un joueur ou à un PNJ.",
+  "Une interaction RP est obligatoire avant le vol.",
+  "Le fear RP doit être respecté par la victime.",
+];
+
+const fourgon = [
+  "Les braquages de fourgon sont des activités aléatoires lancées par le serveur.",
+  "La LSPD est avertie après un court délai.",
+  "Une fois le fourgon ouvert, les sacs de billets peuvent être récupérés.",
+];
+
+const cambriolage = [
+  "Chaque joueur peut réaliser un cambriolage par jour.",
+  "Pour lancer un cambriolage, il faut un lockpick et un tournevis.",
+  "Le bruit peut réveiller un PNJ qui peut appeler la police.",
+  "Les objets volés doivent ensuite être revendus au point prévu.",
+];
+
 export default function App() {
-  const navGroups = [
-    {
-      title: "Accueil",
-      items: [{ href: "#accueil", label: "Accueil", icon: "🏠" }],
-    },
-    {
-      title: "Règlement Légal",
-      items: [
-        { href: "#legal-home", label: "Vue d’ensemble", icon: "⚖️" },
-        { href: "#lspd", label: "LSPD / BCSO", icon: "👮" },
-        { href: "#ems", label: "EMS", icon: "🚑" },
-        { href: "#entreprise", label: "Entreprise", icon: "🏢" },
-        { href: "#activites-legales", label: "Activités légales", icon: "🎣" },
-        { href: "#peche", label: "Pêche", icon: "🐟" },
-        { href: "#acier", label: "Acier", icon: "🪨" },
-        { href: "#scierie", label: "Scierie", icon: "🪵" },
-        { href: "#course", label: "Course", icon: "🏁" },
-      ],
-    },
-    {
-      title: "Règlement Illégal",
-      items: [
-        { href: "#illegal-home", label: "Vue d’ensemble", icon: "🔫" },
-        { href: "#illegal-general", label: "Règlement illégal", icon: "⚠️" },
-        { href: "#iles", label: "Les îles", icon: "🏝️" },
-        { href: "#activites-illegales", label: "Activités illégales", icon: "💀" },
-        { href: "#drogues", label: "Drogues", icon: "🧪" },
-        { href: "#pacific", label: "Braquage Pacific", icon: "🏦" },
-        { href: "#bijouterie", label: "Bijouterie", icon: "💎" },
-        { href: "#superettes", label: "Supérettes", icon: "🛒" },
-        { href: "#carjack", label: "Carjack", icon: "🚗" },
-        { href: "#fourgon", label: "Fourgon", icon: "🚚" },
-        { href: "#cambriolage", label: "Cambriolage", icon: "🏚️" },
-      ],
-    },
-  ];
-
-  const legalCards = [
-    { href: "#lspd", title: "Règlement LSPD / BCSO", icon: "👮", desc: "Forces de l’ordre, procédures et poursuites." },
-    { href: "#ems", title: "Règlement EMS", icon: "🚑", desc: "Service médical, interventions et matériel." },
-    { href: "#entreprise", title: "Règlement Entreprise", icon: "🏢", desc: "Patrons, employés et véhicules pros." },
-    { href: "#activites-legales", title: "Activités légales", icon: "🎣", desc: "Métiers, pêche, acier, scierie et course." },
-  ];
-
-  const illegalCards = [
-    { href: "#illegal-general", title: "Règlement Illégal", icon: "⚠️", desc: "Règles générales des scènes illégales." },
-    { href: "#iles", title: "Les îles", icon: "🏝️", desc: "Cayo, RoxWood et accès spéciaux." },
-    { href: "#activites-illegales", title: "Activités illégales", icon: "💀", desc: "Drogues, braquages et cambriolages." },
-  ];
-
-  const lspd = {
-    tenue: [
-      "Les tenues et véhicules LSPD / BCSO sont obligatoires en service.",
-      "En civil, un signe distinctif clair doit montrer l’appartenance aux forces de l’ordre : insigne, blason ou identification visible.",
-    ],
-    interdits: [
-      "Interdiction de revenir au poste en pleine scène.",
-      "Interdiction de contrôler une personne sans être en service ou sans affichage clair du statut policier.",
-      "Interdiction d’utiliser les armes de service hors service.",
-      "Interdiction absolue de vendre une arme LSPD / BCSO.",
-      "Interdiction de confisquer un citoyen déjà au sol.",
-      "Interdiction de laisser un individu plus d’une heure en cellule sans contexte RP justifié.",
-      "Interdiction de passer d’un RP illégal à un RP LSPD / BCSO sans wipe.",
-      "Interdiction d’incarner un ripou sans autorisation staff par ticket.",
-      "Interdiction de garder les armes saisies pour usage personnel.",
-      "Interdiction d’utiliser des armes illégales en tant qu’agent.",
-      "La LSPD / BCSO ne peut sortir que deux véhicules d’intervention rapide en même temps sur la carte.",
-      "Interdiction de distinguer argent propre et argent sale sans justification RP et sans vérification cohérente.",
-      "Interdiction d’utiliser le défibrillateur pour avantager une scène ; après réanimation, attendre 10 minutes avant de ressortir une arme à feu.",
-      "Interdiction de fouiller sans motif valide selon le niveau d’alerte ; un simple délit de fuite ne justifie qu’une palpation de sécurité.",
-      "Interdiction de braquer ou prendre un otage seul en étant en service LSPD / BCSO.",
-    ],
-    cadets: [
-      "Les cadets et officiers doivent respecter le fear RP en infériorité ou en situation illégale.",
-      "Les cadets ne peuvent pas avoir de casier judiciaire.",
-      "Les cadets ne peuvent pas partir en patrouille seuls.",
-    ],
-    fouille: [
-      "Le suspect monte dans un véhicule de police.",
-      "Le suspect dissimule son visage.",
-      "Le suspect porte un holster plein.",
-      "Le suspect porte un gilet pare-balles.",
-      "Le suspect est menaçant.",
-      "La liste n’est pas exhaustive, mais toute fouille doit rester cohérente et justifiée RP.",
-    ],
-    poursuite: [
-      "Les pneus d’un véhicule en course-poursuite peuvent être visés si les occupants ont ouvert le feu ou si la conduite devient réellement dangereuse.",
-      "Le PIT est autorisé uniquement sous conditions et ne doit jamais servir à provoquer volontairement un accident pour mettre fin à la scène.",
-      "Après deux tentatives de PIT infructueuses, des tirs sur les pneus peuvent être autorisés.",
-      "La LSPD / BCSO peut effectuer jusqu’à trois descentes par semaine et par service sur des points de drogue sans dossier, avec un seul point visé par descente.",
-      "En cas de fusillade sur un point de drogue, la LSPD peut intervenir avec un effectif renforcé sans que cela compte dans le quota des descentes.",
-      "Les forces de l’ordre peuvent patrouiller aux abords des zones sensibles, mais ne peuvent pas y intervenir sans motif RP valable.",
-      "Un seul sniper est autorisé par scène côté LSPD / BCSO ; deux maximum lors d’une scène conjointe entre les deux services.",
-      "Les peines de prison fédérale doivent passer par une demande validée via ticket administrateur.",
-    ],
-    ppa: [
-      "Avec sac mais sans PPA : confiscation possible des armes lourdes et légères.",
-      "Avec sac et avec PPA : pas de confiscation lors d’un contrôle routinier classique.",
-      "Sans sac et sans PPA : confiscation possible des armes légères uniquement.",
-      "Sans sac et avec PPA : pas de confiscation lors d’un contrôle routinier classique.",
-      "Lorsqu’un citoyen ouvre le feu en ville, l’arme utilisée peut être confisquée quel que soit son PPA.",
-    ],
-    autres: [
-      "Les agents doivent faire preuve de professionnalisme, sans abus de pouvoir, sans insultes et avec maîtrise de soi.",
-      "Un policier corrompu est plus exposé à une mort RP.",
-      "Un officier peut être exposé à une mort RP s’il interfère dans les négociations ou met en danger ses collègues ou les otages.",
-      "Le port du masque est réservé à l’unité d’intervention et uniquement lors de grosses scènes.",
-      "Un changement de DEFCON peut être demandé via ticket.",
-      "En cas de troll RP devant un bâtiment des forces de l’ordre, une interdiction territoriale RP d’une semaine peut être appliquée.",
-      "Un membre LSPD / BCSO compte pour une seule personne dans le rapport de force.",
-      "Un citoyen doit posséder les permis adaptés aux armes légères et lourdes ; sans permis, l’ensemble des armes peut être confisqué.",
-      "Les indics doivent passer par les hauts gradés, protéger leur identité et seuls les membres de l’état-major doivent connaître leur identité réelle.",
-    ],
-  };
-
-  const ems = [
-    "Interdiction d’utiliser son service EMS pour participer à de l’illégal.",
-    "Interdiction de vendre ou échanger medikits et bandages.",
-    "Interdiction d’intervenir sur une scène illégale pendant les tirs.",
-    "Interdiction de modifier esthétiquement le véhicule EMS.",
-    "Interdiction de favoriser un groupe particulier avec son service médical.",
-    "Interdiction de dissimuler son visage ou de porter un équipement incohérent en service.",
-    "Un EMS peut intervenir dans un quartier seulement si l’accès lui est donné RP.",
-    "En cas de refus de présentation de carte d’identité, la LSPD / BCSO peut être sollicitée.",
-    "Une ATA de 10 minutes est prévue pour les morts par arme.",
-    "La tenue de service est obligatoire.",
-    "Le protocole d’intervention doit être respecté.",
-    "En fin de service, le matériel doit être déposé dans le coffre de l’entreprise.",
-  ];
-
-  const entreprise = {
-    general: [
-      "Interdiction pour un patron de vider ou utiliser le coffre entreprise à des fins personnelles.",
-      "Une entreprise hors boutique peut être récupérée si aucune activité patronale n’est observée pendant deux semaines.",
-      "Interdiction de vendre ou donner son entreprise ; toute reprise doit passer par ticket.",
-      "Interdiction de cumuler plusieurs emplois légaux en même temps.",
-      "Le vol dans le coffre entreprise est interdit et peut entraîner sanction et remboursement.",
-    ],
-    mecano: [
-      "Interdiction d’équiper un véhicule avec une mitrailleuse ou un armement incohérent.",
-      "Interdiction de mettre un véhicule en fourrière sans autorisation du propriétaire, sauf abandon manifeste.",
-      "Interdiction de déverrouiller un véhicule trouvé dans la rue sans demande claire ou autorisation du propriétaire.",
-    ],
-    concessionnaire: [
-      "Interdiction d’attribuer gratuitement un véhicule à un ami ou à un joueur sans procédure.",
-      "Toute acquisition de véhicule doit être payée et cohérente.",
-    ],
-    occasion: [
-      "Interdiction de vendre un véhicule à l’aveugle : l’acheteur doit connaître le contenu du coffre.",
-      "Aucun remboursement si l’acheteur valide le véhicule en connaissant son contenu.",
-      "Les véhicules d’entreprise, LSPD, BCSO, gouvernementaux et hospitaliers ne doivent pas être vendus sans autorisation.",
-      "La vente d’un véhicule de fonction à une personne non autorisée peut mener à de lourdes sanctions.",
-    ],
-  };
-
-  const legalActivities = [
-    "La section légale inclut plusieurs activités accessibles côté civil.",
-    "Exemples visibles depuis la navigation : pêche, acier, scierie et course.",
-    "Chaque activité doit être jouée proprement, sans abus de farm ni détournement HRP.",
-  ];
-
-  const peche = [
-    "Pour commencer, il faut acheter une canne à pêche dans les LTD de la ville.",
-    "La canne en bois est vendue au LTD du Sud pour 200 000 $.",
-    "La canne en aluminium est vendue au LTD du Nord pour 1 000 000 $.",
-    "Les appâts existent en plusieurs types : eau douce, tropical et mer.",
-    "Chaque appât coûte 1 000 $ unité.",
-    "Chaque type d’appât correspond à une zone de pêche spécifique.",
-    "Sur place, un PNJ “Pêcheur Expert” permet de consulter le type de zone, le type d’appât, les crafts, l’aide et le profil pêcheur.",
-    "Le profil permet notamment de voir les poissons pêchés, les zones et certaines statistiques.",
-    "Le joueur doit utiliser sa canne puis son appât pour lancer sa session de pêche.",
-  ];
-
-  const acier = [
-    "L’activité acier repose sur trois types de points : récolte, traitement et vente.",
-    "Pour commencer, il faut se rendre sur un point de récolte acier.",
-    "Une fois sur place, il faut appuyer sur E pour lancer la récolte.",
-    "Il est conseillé de prendre un véhicule avec de la place dans le coffre pour transporter la récolte.",
-    "Après la récolte, il faut se rendre sur un point de traitement acier.",
-    "Une fois sur le point de traitement, il faut appuyer sur E pour lancer le traitement.",
-    "La dernière étape consiste à se rendre sur un point de vente acier.",
-  ];
-
-  const scierie = [
-    "L’activité scierie fonctionne avec un système de récolte de bois.",
-    "Le bois doit être transformé avant d’être vendu.",
-    "Les véhicules doivent être utilisés de manière cohérente pour transporter les ressources.",
-    "Le farming en groupe doit rester réaliste et non abusif.",
-    "Les interactions RP doivent être respectées.",
-  ];
-
-  const course = [
-    "Les courses doivent être organisées de manière RP.",
-    "Les paris doivent rester raisonnables et cohérents.",
-    "Le fair-play est obligatoire, toute triche est sanctionnée.",
-    "Les courses illégales doivent être encadrées RP.",
-    "Les collisions volontaires sont interdites sauf si justifiées RP.",
-  ];
-
-  const illegalGeneral = [
-    "Toute scène commencée doit être jouée jusqu’à son terme.",
-    "En cas de problème, il faut terminer la scène, noter l’heure et les joueurs concernés, puis faire un ticket ou un report.",
-    "Les scènes coupées en plein milieu peuvent être sanctionnées sévèrement.",
-    "Toute personne en scène illégale uniquement doit rester masquée.",
-    "Les scènes doivent être menées à terme même si une erreur est reprochée à un autre joueur.",
-    "Les tirs sont réservés aux personnes disposant d’un rôle illégal.",
-    "Une personne morte n’est pas lootable sauf sur point chaud ou dans les cas explicitement prévus.",
-    "Le fear RP doit être joué obligatoirement ; les sommations suicides sont interdites.",
-    "Les groupes doivent organiser un premier rendez-vous avant toute interaction agressive, sauf validation staff exceptionnelle.",
-    "Les CVC en ville restent interdits.",
-    "Sur point chaud, le groupe gagnant peut vendre et le groupe perdant ainsi que toute personne sous ATA doit rentrer au quartier.",
-    "Les coups de pression et certaines humiliations RP légères sont autorisés, mais danser sur les corps morts est interdit.",
-    "Dans les zones dangereuses, le fear RP est obligatoire.",
-    "Braquer une personne n’est autorisé que si cela sert un objectif RP ; c’est interdit en zone légale ou sur certaines activités spécifiques.",
-    "Le vol de véhicule est autorisé.",
-    "Les activités illégales qui rapportent des points et de l’expérience sont interdites entre 3h00 et 10h00.",
-    "En interrogatoire, mentir sur son groupe est interdit mais mentir sur son grade est autorisé.",
-    "Les casques pare-balles type biker ou militaire sont interdits sauf organisations et opérations spécifiques.",
-    "Les armes lourdes avec sacoche sont interdites.",
-    "Farmer depuis un véhicule et/ou arme à la main est interdit.",
-    "Se rajouter à une scène en cours, back gunfight, re-drop et plusieurs formes de bait sont interdits hors exceptions prévues.",
-    "Retourner quartier, zone safe ou villa pour échapper à une poursuite est interdit.",
-    "Toute discussion HRP ou usage abusif des commandes pendant la scène est sanctionnable ; les litiges se règlent après la scène.",
-    "Les sommations se font avec 10 balles en l’air, hors véhicule et sans silencieux.",
-  ];
-
-  const iles = [
-    "Le gouverneur de Cayo dispose de larges pouvoirs sur son île, aussi bien côté légal que côté illégal.",
-    "Cayo doit être autonome côté légal : garage, boutique, hôpital, police, club et autres services doivent y vivre en RP.",
-    "Selon les relations avec Los Santos, un convoi diplomatique vers la ville peut être autorisé puis retiré en cas d’écart.",
-    "Entrer sur Cayo sans pass est interdit et expose à une mort RP.",
-    "La LSPD / BCSO ne peut pas se rendre sur Cayo, y compris en cas de back sur l’île.",
-    "Les résidents ne peuvent pas tirer sur une personne en dehors de l’île après le portique.",
-    "Le groupe résidant à RoxWood peut contrôler les accès et sorties.",
-    "Le groupe résidant à RoxWood peut missionner un autre groupe illégal pour ce contrôle.",
-    "Les EMS sont autorisés à entrer sur RoxWood sur présentation de leur carte EMS.",
-    "Les résidents RoxWood peuvent contrôler l’accès au farm de drogue de l’île.",
-    "Entrer sur RoxWood sans autorisation est interdit et expose à une mort RP.",
-    "La LSPD / BCSO ne peut pas se rendre sur RoxWood ; après plusieurs retours signalés, une descente peut être demandée.",
-    "Les résidents de RoxWood ne peuvent pas partir en convoi dans Los Santos en se revendiquant ouvertement RoxWood.",
-  ];
-
-  const activitesIllegales = [
-    "La section activités illégales regroupe les drogues, le braquage Pacific, la bijouterie, les supérettes, le carjack, le fourgon et le cambriolage.",
-    "Chaque activité a ses propres conditions de lancement, de fréquence ou de matériel.",
-  ];
-
-  const drogues = [
-    "Les points de drogue et points de vente sont centraux dans l’économie illégale du serveur.",
-    "Posséder ou revendiquer une zone de vente passe par la vente de drogue sur cette zone.",
-    "Les zones de vente servent notamment à acheter au shop illégal des armes et autres équipements.",
-    "Les armes achetées au shop illégal peuvent ensuite être revendues à d’autres groupes.",
-    "Certaines zones de vente sont réservées à des gangs ou organisations spécifiques.",
-    "Chaque drogue peut être revendue sur n’importe quel point de vente adapté.",
-    "La touche F7 permet d’accéder à la liste des territoires lorsqu’on fait partie d’un groupe.",
-    "Vendre de la drogue rapporte des points de zone au groupe et de l’argent sale directement au joueur.",
-  ];
-
-  const pacific = [
-    "Le braquage Pacific n’est disponible qu’avec GDOC préalable.",
-    "Sans GDOC, le braquage ne peut pas être lancé.",
-    "Comme pour les autres braquages, il faut attendre plusieurs heures entre deux braquages, généralement entre 3 et 5 heures.",
-  ];
-
-  const bijouterie = [
-    "La bijouterie peut rapporter jusqu’à 5 000 000 $ d’argent sale si toutes les étapes sont réussies.",
-    "Comme pour les autres braquages, il faut attendre plusieurs heures entre deux braquages.",
-    "Le matériel mentionné comprend notamment 3 thermites, 2 découpeuses de vitres et 4 perceuses.",
-    "Après le braquage, l’équipe doit encore gérer la poursuite policière puis se cacher le temps que la tension redescende.",
-  ];
-
-  const superettes = [
-    "Chaque supérette peut être braquée toutes les 60 minutes.",
-    "Le braquage se lance en entrant dans une supérette avec une arme en main et en visant le caissier.",
-    "Une fois la jauge de menace remplie, le contenu de la caisse est donné.",
-    "Le sac se ramasse avec E et l’argent est directement reçu en argent sale.",
-  ];
-
-  const carjack = [
-    "Le carjack consiste à voler un véhicule à un joueur ou PNJ.",
-    "Une interaction RP est obligatoire avant le vol.",
-    "Le fear RP doit être respecté par la victime.",
-    "Le vol doit rester cohérent et non abusif.",
-    "Les abus de carjack sont sanctionnés.",
-  ];
-
-  const fourgon = [
-    "Les braquages de fourgon sont des activités aléatoires lancées par le serveur.",
-    "Quand l’alerte apparaît, il faut se rendre à l’endroit indiqué sur la carte.",
-    "La LSPD est avertie au bout de 30 secondes.",
-    "Sur zone, il faut casser le fourgon en le frappant ou en tirant dessus.",
-    "Une fois le fourgon ouvert, les sacs de billets peuvent être récupérés et rapportent de l’argent sale.",
-  ];
-
-  const cambriolage = [
-    "Chaque joueur peut réaliser un cambriolage par jour.",
-    "Le reboot du serveur a lieu tous les jours à 15h.",
-    "Pour lancer un cambriolage, il faut un lockpick et un tournevis.",
-    "Les maisons cambriolables sont indiquées sur la carte par une petite maison rouge.",
-    "Devant la porte, un point permet de commencer le cambriolage.",
-    "Le bruit dans la maison peut réveiller un PNJ qui peut tirer et appeler la police.",
-    "Le coffre-fort n’apparaît qu’une fois sur deux mais peut rapporter beaucoup d’argent sale.",
-    "Le joueur doit voler les objets, les stocker dans le coffre du véhicule et revenir autant que possible avant l’arrivée des forces de l’ordre.",
-    "Les objets volés doivent ensuite être revendus au point prévu.",
-  ];
-
   return (
     <div className="min-h-screen bg-[#04070d] text-white">
       <div className="flex min-h-screen">
-        <aside className="hidden lg:block w-80 shrink-0 bg-[#050a14] border-r border-cyan-500/10">
+        <aside className="hidden w-80 shrink-0 border-r border-cyan-500/10 bg-[#050a14] lg:block">
           <div className="sticky top-0 h-screen overflow-y-auto p-6">
-            <div className="flex items-center gap-3 mb-8">
+            <div className="mb-8 flex items-center gap-3">
               <img
                 src="/logo.png"
                 alt="Logo Urban Life"
-                className="w-12 h-12 rounded-2xl object-cover shadow-lg ring-1 ring-cyan-400/20"
+                className="h-12 w-12 rounded-2xl object-cover shadow-lg ring-1 ring-cyan-400/20"
               />
               <div>
                 <h1 className="text-lg font-bold text-cyan-300">Urban Life</h1>
-                <p className="text-xs text-slate-400">Règlement RP</p>
+                <p className="text-xs text-slate-400">Règlement complet</p>
               </div>
             </div>
 
@@ -348,34 +273,45 @@ export default function App() {
           </div>
         </aside>
 
-        <main className="flex-1 p-4 sm:p-8 space-y-8">
+        <main className="flex-1 p-4 sm:p-8">
           <motion.section
             id="accueil"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-3xl overflow-hidden border border-cyan-400/20 shadow-2xl bg-cover bg-center"
-            style={{ backgroundImage: "url('/banner.png')" }}
+            className="relative mb-8 overflow-hidden rounded-3xl border border-cyan-400/20 shadow-2xl"
+            style={{ backgroundImage: "url('/banner.png')", backgroundSize: "cover", backgroundPosition: "center" }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
-            <div className="relative p-8 sm:p-10">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/45" />
+            <div className="relative p-8 sm:p-10 lg:p-14">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-cyan-300">
                 Urban Life • Règlement RP
               </div>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight">
+              <h2 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-7xl">
                 RÈGLEMENT URBAN LIFE
               </h2>
-              <p className="mt-4 text-slate-300 max-w-2xl text-base sm:text-lg">
-                Consultez toutes les règles officielles du serveur. Respectez-les pour une expérience RP propre, cohérente et immersive.
+              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+                Retrouvez l’ensemble des règles du serveur Urban Life. Toute infraction
+                peut entraîner des sanctions.
               </p>
             </div>
           </motion.section>
 
-          <Section id="legal-home" title="Règlement RP Légal" icon="⚖️" subtitle="Forces de l’ordre, EMS, entreprises et activités légales.">
+          <section id="legal-home" className="mb-8 space-y-6">
+            <SectionHeader
+              title="Règlement RP Légal"
+              subtitle="Forces de l’ordre, EMS, entreprise et activités légales."
+              icon="⚖️"
+            />
             <CardGrid cards={legalCards} />
-          </Section>
+          </section>
 
-          <Section id="lspd" title="Règlement LSPD / BCSO" icon="👮" subtitle="Forces de l’ordre, fouilles, poursuites, PPA et procédures RP.">
+          <section id="lspd" className="mb-8 space-y-6">
+            <SectionHeader
+              title="Règlement LSPD / BCSO"
+              subtitle="Règles des forces de l’ordre, fouilles, poursuites, PPA et procédures RP."
+              icon="👮"
+            />
             <div className="grid gap-6 xl:grid-cols-2">
               <RuleCard title="Tenue & service" items={lspd.tenue} />
               <RuleCard title="Interdictions principales" items={lspd.interdits} />
@@ -385,93 +321,181 @@ export default function App() {
               <RuleCard title="Contrôles & PPA" items={lspd.ppa} />
               <RuleCard title="Autres règles" items={lspd.autres} />
             </div>
-          </Section>
+          </section>
 
-          <Section id="ems" title="Règlement EMS" icon="🚑" subtitle="Service médical, neutralité, interventions et matériel.">
+          <section id="ems" className="mb-8 space-y-6">
+            <SectionHeader
+              title="Règlement EMS"
+              subtitle="Service médical, neutralité, interventions et matériel."
+              icon="🚑"
+            />
             <RuleCard title="Règles EMS" items={ems} />
-          </Section>
+          </section>
 
-          <Section id="entreprise" title="Règlement Entreprise" icon="🏢" subtitle="Patrons, employés, mécanos, concessionnaires et ventes d’occasion.">
+          <section id="entreprise" className="mb-8 space-y-6">
+            <SectionHeader
+              title="Règlement Entreprise"
+              subtitle="Patrons, employés, mécanos, concessionnaires et ventes d’occasion."
+              icon="🏢"
+            />
             <div className="grid gap-6 lg:grid-cols-2">
               <RuleCard title="Général" items={entreprise.general} />
               <RuleCard title="Mécano" items={entreprise.mecano} />
               <RuleCard title="Concessionnaire" items={entreprise.concessionnaire} />
               <RuleCard title="Occasion" items={entreprise.occasion} />
             </div>
-          </Section>
+          </section>
 
-          <Section id="activites-legales" title="Activités légales" icon="🎣" subtitle="Pêche, acier, scierie et course.">
+          <section id="activites-legales" className="mb-8 space-y-6">
+            <SectionHeader
+              title="Activités légales"
+              subtitle="Sous-sections pour pêche, acier, scierie et course."
+              icon="🎣"
+            />
             <RuleCard title="Vue d’ensemble" items={legalActivities} />
-          </Section>
+          </section>
 
-          <Section id="peche" title="Pêche" icon="🐟" subtitle="Matériel, appâts et fonctionnement.">
+          <section id="peche" className="mb-8">
             <RuleCard title="Pêche" items={peche} />
-          </Section>
+          </section>
 
-          <Section id="acier" title="Acier" icon="🪨" subtitle="Récolte, traitement et vente.">
+          <section id="acier" className="mb-8">
             <RuleCard title="Acier" items={acier} />
-          </Section>
+          </section>
 
-          <Section id="scierie" title="Scierie" icon="🪵" subtitle="Récolte de bois et transformation.">
+          <section id="scierie" className="mb-8">
             <RuleCard title="Scierie" items={scierie} />
-          </Section>
+          </section>
 
-          <Section id="course" title="Course" icon="🏁" subtitle="Organisation, fair-play et cadre RP.">
+          <section id="course" className="mb-8">
             <RuleCard title="Course" items={course} />
-          </Section>
+          </section>
 
-          <Section id="illegal-home" title="Règlement RP Illégal" icon="🔫" subtitle="Vue d’ensemble, îles et activités illégales.">
+          <section id="illegal-home" className="mb-8 space-y-6 border-t border-cyan-500/10 pt-8">
+            <SectionHeader
+              title="Règlement RP Illégal"
+              subtitle="Vue d’ensemble, îles et activités illégales."
+              icon="🔫"
+            />
             <CardGrid cards={illegalCards} />
-          </Section>
+          </section>
 
-          <Section id="illegal-general" title="Règlement illégal" icon="⚠️" subtitle="Règles générales des scènes illégales.">
+          <section id="illegal-general" className="mb-8">
             <RuleCard title="Règlement illégal" items={illegalGeneral} />
-          </Section>
+          </section>
 
-          <Section id="iles" title="Les îles" icon="🏝️" subtitle="Cayo, RoxWood et accès spéciaux.">
+          <section id="iles" className="mb-8">
             <RuleCard title="Les îles" items={iles} />
-          </Section>
+          </section>
 
-          <Section id="activites-illegales" title="Activités illégales" icon="💀" subtitle="Braquages, drogues et autres activités.">
+          <section id="activites-illegales" className="mb-8">
             <RuleCard title="Activités illégales" items={activitesIllegales} />
-          </Section>
+          </section>
 
-          <Section id="drogues" title="Drogues" icon="🧪" subtitle="Zones, ventes et économie illégale.">
+          <section id="drogues" className="mb-8">
             <RuleCard title="Drogues" items={drogues} />
-          </Section>
+          </section>
 
-          <Section id="pacific" title="Braquage Pacific" icon="🏦" subtitle="Conditions et organisation.">
+          <section id="pacific" className="mb-8">
             <RuleCard title="Braquage Pacific" items={pacific} />
-          </Section>
+          </section>
 
-          <Section id="bijouterie" title="Bijouterie" icon="💎" subtitle="Matériel, gains et fuite.">
+          <section id="bijouterie" className="mb-8">
             <RuleCard title="Bijouterie" items={bijouterie} />
-          </Section>
+          </section>
 
-          <Section id="superettes" title="Supérettes" icon="🛒" subtitle="Braquages rapides et cooldown.">
+          <section id="superettes" className="mb-8">
             <RuleCard title="Supérettes" items={superettes} />
-          </Section>
+          </section>
 
-          <Section id="carjack" title="Carjack" icon="🚗" subtitle="Vol de véhicule et interaction RP.">
+          <section id="carjack" className="mb-8">
             <RuleCard title="Carjack" items={carjack} />
-          </Section>
+          </section>
 
-          <Section id="fourgon" title="Fourgon" icon="🚚" subtitle="Braquage aléatoire et sacs d’argent.">
+          <section id="fourgon" className="mb-8">
             <RuleCard title="Fourgon" items={fourgon} />
-          </Section>
+          </section>
 
-          <Section id="cambriolage" title="Cambriolage" icon="🏚️" subtitle="Maisons, outils et revente.">
+          <section id="cambriolage" className="pb-10">
             <RuleCard title="Cambriolage" items={cambriolage} />
-          </Section>
+          </section>
         </main>
       </div>
     </div>
   );
 }
 
-function Section({ id, title, subtitle, icon, children }) {
+function SectionHeader({ title, subtitle, icon }) {
   return (
-    <section id={id} className="space-y-6">
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y:
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.35 }}
+      className="rounded-2xl border border-cyan-500/10 bg-[#08111d] p-6 shadow-xl"
+    >
+      <div className="flex items-center gap-3">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-500/10 text-2xl ring-1 ring-cyan-400/20">
+          {icon}
+        </div>
+        <div>
+          <h3 className="text-2xl font-bold text-white sm:text-3xl">{title}</h3>
+          <p className="mt-1 text-sm text-slate-400 sm:text-base">{subtitle}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function CardGrid({ cards }) {
+  return (
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {cards.map((card, index) => (
+        <motion.a
+          key={card.href}
+          href={card.href}
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.03 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.25, delay: index * 0.04 }}
+          className="rounded-2xl border border-cyan-400/15 bg-[#0b1322] p-5 shadow-xl transition hover:border-cyan-400/30"
+        >
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <span className="text-xl">{card.icon}</span>
+              <span className="font-medium text-white">{card.title}</span>
+            </div>
+            <span className="text-cyan-300">→</span>
+          </div>
+        </motion.a>
+      ))}
+    </div>
+  );
+}
+
+function RuleCard({ title, items }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.01 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.25 }}
+      className="rounded-2xl border border-cyan-500/20 bg-[#0d1624]/90 p-6 shadow-xl"
+    >
+      <h4 className="text-lg font-semibold text-cyan-300">{title}</h4>
+      <div className="mt-4 space-y-3">
+        {items.map((item, index) => (
+          <div
+            key={index}
+            className="flex gap-3 rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3"
+          >
+            <span className="mt-1 text-cyan-300">•</span>
+            <p className="text-sm leading-6 text-slate-300">{item}</p>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
