@@ -139,7 +139,7 @@ const peche = [
   "La canne en bois est vendue dans tout les Ltd pour 250 000 $.",
   "La canne en aluminium est vendue dans tout les Ltd pour 900 000 $.",
   "La canne Urban est vendue dans tout les Ltd pour 1 200 000 $.",
-;
+];
 
 const scierie = [
   "L’activité scierie fonctionne avec un système de récolte de bois.",
