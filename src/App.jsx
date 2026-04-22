@@ -6,7 +6,11 @@ const navGroups = [
     items: [{ href: "#accueil", label: "Accueil", icon: "🏠" }],
   },
   {
-    title: "Règlement Légal",
+    title: "Guide RP",
+    items: [{ href: "#langage-de-base", label: "Langage de base", icon: "🗣️" }],
+  },
+  {
+    title: "Règlement légal",
     items: [
       { href: "#legal-home", label: "Vue d’ensemble", icon: "⚖️" },
       { href: "#lspd", label: "LSPD / BCSO", icon: "👮" },
@@ -14,13 +18,13 @@ const navGroups = [
       { href: "#entreprise", label: "Entreprise", icon: "🏢" },
       { href: "#activites-legales", label: "Activités légales", icon: "🎣" },
       { href: "#peche", label: "Pêche", icon: "🐟" },
-      { href: "#acier", label: "Acier", icon: "🪨" },
+      { href: "#acier", label: "Acier / Mine", icon: "⛏️" },
       { href: "#scierie", label: "Scierie", icon: "🪵" },
       { href: "#course", label: "Course", icon: "🏁" },
     ],
   },
   {
-    title: "Règlement Illégal",
+    title: "Règlement illégal",
     items: [
       { href: "#illegal-home", label: "Vue d’ensemble", icon: "🔫" },
       { href: "#illegal-general", label: "Règlement illégal", icon: "⚠️" },
@@ -37,15 +41,90 @@ const navGroups = [
   },
 ];
 
+const basicLanguage = [
+  {
+    term: "Freekill",
+    definition: "Tuer un joueur sans raison RP valable, sans contexte ou sans scène cohérente.",
+  },
+  {
+    term: "Freepunch",
+    definition: "Frapper un joueur sans raison RP valable ou sans construction de scène.",
+  },
+  {
+    term: "Fear RP",
+    definition: "Jouer la peur de façon réaliste face à une menace crédible comme une arme, un surnombre ou un danger immédiat.",
+  },
+  {
+    term: "No Fear",
+    definition: "Ne pas respecter la peur alors que la situation RP devrait pousser ton personnage à céder ou fuir.",
+  },
+  {
+    term: "Powergaming",
+    definition: "Forcer une action irréaliste ou imposer une issue impossible à contrer pour l’autre joueur.",
+  },
+  {
+    term: "Metagaming",
+    definition: "Utiliser en jeu une information obtenue hors RP, comme un stream, Discord ou un appel vocal externe.",
+  },
+  {
+    term: "Mass RP",
+    definition: "Prendre en compte que la ville est censée être vivante et peuplée, même si tout n’est pas visible en jeu.",
+  },
+  {
+    term: "NLR",
+    definition: "New Life Rule : après une mort RP ou un coma selon les règles du serveur, ton personnage oublie la scène récente concernée.",
+  },
+  {
+    term: "Win RP",
+    definition: "Chercher uniquement à gagner une scène au lieu de jouer une histoire cohérente et intéressante.",
+  },
+  {
+    term: "Force RP",
+    definition: "Imposer un rôle, une action ou une conséquence à un autre joueur sans lui laisser d’espace RP.",
+  },
+  {
+    term: "Bait",
+    definition: "Provoquer volontairement une scène pour faire réagir police ou joueurs sans vraie logique RP.",
+  },
+  {
+    term: "Cop bait",
+    definition: "Provoquer volontairement les forces de l’ordre pour déclencher une poursuite ou une intervention.",
+  },
+  {
+    term: "Carkill",
+    definition: "Utiliser un véhicule comme arme de manière abusive ou irréaliste pour tuer ou neutraliser.",
+  },
+  {
+    term: "Carjack",
+    definition: "Vol de véhicule avec interaction RP cohérente, menace claire et respect du fear RP.",
+  },
+  {
+    term: "HRP",
+    definition: "Hors roleplay : tout ce qui concerne le joueur réel et non le personnage.",
+  },
+  {
+    term: "RP",
+    definition: "Roleplay : interpréter un personnage de manière cohérente dans l’univers du serveur.",
+  },
+  {
+    term: "Scene",
+    definition: "Ensemble des actions RP liées à un événement précis : contrôle, poursuite, braquage, dispute, etc.",
+  },
+  {
+    term: "Revenge kill",
+    definition: "Revenir tuer quelqu’un par vengeance après une scène sans base RP suffisante ou en contournant les règles.",
+  },
+];
+
 const legalCards = [
   { href: "#lspd", title: "Règlement LSPD / BCSO", icon: "👮" },
   { href: "#ems", title: "Règlement EMS", icon: "🚑" },
-  { href: "#entreprise", title: "Règlement Entreprise", icon: "🏢" },
+  { href: "#entreprise", title: "Règlement entreprise", icon: "🏢" },
   { href: "#activites-legales", title: "Activités légales", icon: "🎣" },
 ];
 
 const illegalCards = [
-  { href: "#illegal-general", title: "Règlement Illégal", icon: "⚠️" },
+  { href: "#illegal-general", title: "Règlement illégal", icon: "⚠️" },
   { href: "#iles", title: "Les îles", icon: "🏝️" },
   { href: "#activites-illegales", title: "Activités illégales", icon: "💀" },
 ];
@@ -53,17 +132,17 @@ const illegalCards = [
 const lspd = {
   tenue: [
     "Les tenues et véhicules LSPD / BCSO sont obligatoires en service.",
-    "En civil, un signe distinctif clair doit montrer l’appartenance aux forces de l’ordre.",
+    "En civil, un signe distinctif clair doit permettre d’identifier l’appartenance aux forces de l’ordre.",
   ],
   interdits: [
-    "Interdiction de revenir au poste en pleine scène.",
+    "Interdiction de revenir au poste en pleine scène sans justification RP solide.",
     "Interdiction de contrôler une personne sans être en service ou sans signe distinctif clair.",
     "Interdiction d’utiliser les armes de service hors service.",
     "Interdiction absolue de vendre une arme LSPD / BCSO.",
-    "Interdiction de confisquer un citoyen déjà au sol.",
+    "Interdiction de confisquer un citoyen déjà au sol sans logique RP claire.",
     "Interdiction de laisser un individu trop longtemps en cellule sans contexte RP solide.",
-    "Interdiction d’incarner un policier corrompu sans autorisation staff.",
-    "Interdiction de garder des armes saisies pour usage personnel.",
+    "Interdiction d’incarner un policier corrompu sans autorisation du staff.",
+    "Interdiction de garder des armes saisies pour un usage personnel.",
     "Interdiction d’utiliser des armes illégales en tant qu’agent.",
   ],
   cadets: [
@@ -73,7 +152,7 @@ const lspd = {
   ],
   fouille: [
     "Une fouille doit toujours reposer sur un motif RP valable.",
-    "Des motifs courants existent : visage dissimulé, holster visible, gilet pare-balles, attitude menaçante, montée dans un véhicule de police.",
+    "Exemples de motifs courants : visage dissimulé, holster visible, gilet pare-balles, attitude menaçante ou comportement suspect pendant un contrôle.",
     "Un simple délit de fuite ne justifie pas automatiquement une fouille complète.",
   ],
   poursuite: [
@@ -113,40 +192,57 @@ const entreprise = {
   ],
   mecano: [
     "Interdiction d’ajouter des équipements incohérents à un véhicule.",
-    "Interdiction de mettre un véhicule en fourrière sans raison ou sans autorisation adaptée.",
+    "Interdiction de mettre un véhicule en fourrière sans raison valable ou sans autorisation adaptée.",
     "Interdiction de déverrouiller un véhicule sans demande claire du propriétaire.",
   ],
   concessionnaire: [
     "Interdiction d’offrir un véhicule gratuitement sans procédure ou autorisation.",
     "Toute acquisition doit être cohérente et payée.",
   ],
+  occasion: [
+    "Toute vente d’occasion doit être claire, traçable et cohérente RP.",
+    "Le vendeur doit être en mesure de justifier la provenance du véhicule.",
+    "Les arnaques ou ventes forcées sans scène RP cohérente sont interdites.",
+  ],
 };
 
 const legalActivities = [
-  "La section légale inclut plusieurs activités accessibles côté civil.",
-  "Exemples visibles depuis la navigation : pêche, Boucheron, Mine",
+  "La section légale regroupe plusieurs activités civiles accessibles sans basculer dans l’illégal.",
+  "Exemples : pêche, mine, scierie et course.",
   "Chaque activité doit être jouée proprement, sans abus de farm ni détournement HRP.",
 ];
 
 const peche = [
   "Pour commencer, il faut acheter une canne à pêche dans les LTD de la ville.",
-  "La canne en bois est vendue dans tout les Ltd pour 250 000 $.",
-  "La canne en aluminium est vendue dans tout les Ltd pour 900 000 $.",
-  "La canne Urban est vendue dans tout les Ltd pour 1 200 000 $.",
+  "La canne en bois est vendue dans les LTD pour 250 000 $.",
+  "La canne en aluminium est vendue dans les LTD pour 900 000 $.",
+  "La canne Urban est vendue dans les LTD pour 1 200 000 $.",
 ];
 
-const boucheron = [
+const acier = [
+  "L’activité mine permet de récolter des ressources à transformer ensuite.",
+  "Les minerais doivent être traités puis revendus via le circuit prévu par le serveur.",
+  "Le transport des ressources doit rester cohérent et RP.",
+];
+
+const scierie = [
   "L’activité scierie fonctionne avec un système de récolte de bois.",
   "Le bois doit être transformé avant d’être vendu.",
   "Les véhicules doivent être utilisés de manière cohérente pour transporter les ressources.",
   "Le farming en groupe doit rester réaliste et non abusif.",
 ];
 
+const course = [
+  "Les courses doivent rester RP et ne pas devenir un prétexte à la destruction gratuite ou au troll.",
+  "Le fair-play est attendu entre les participants.",
+  "Toute course organisée doit respecter les règles générales du serveur.",
+];
+
 const illegalGeneral = [
   "Toute scène commencée doit être jouée jusqu’à son terme.",
   "En cas de problème, il faut terminer la scène puis faire un ticket ou un report.",
   "Le fear RP doit être joué obligatoirement.",
-  "Les sommations se font avec 1 balles en l’air, hors véhicule et sans silencieux.",
+  "Les sommations se font avec une balle en l’air, hors véhicule et sans silencieux.",
 ];
 
 const iles = [
@@ -248,7 +344,11 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="relative mb-8 overflow-hidden rounded-3xl border border-cyan-400/20 shadow-2xl"
-            style={{ backgroundImage: "url('/banner.png')", backgroundSize: "cover", backgroundPosition: "center" }}
+            style={{
+              backgroundImage: "url('/banner.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/45" />
             <div className="relative p-8 sm:p-10 lg:p-14">
@@ -259,15 +359,28 @@ export default function App() {
                 RÈGLEMENT URBAN LIFE
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-                Retrouvez l’ensemble des règles du serveur Urban Life. Toute infraction
-                peut entraîner des sanctions.
+                Retrouvez l’ensemble des règles du serveur Urban Life. Toute infraction peut
+                entraîner des sanctions.
               </p>
             </div>
           </motion.section>
 
+          <section id="langage-de-base" className="mb-8 space-y-6">
+            <SectionHeader
+              title="Langage de base"
+              subtitle="Lexique essentiel pour comprendre les termes RP les plus utilisés sur le serveur."
+              icon="🗣️"
+            />
+            <div className="grid gap-4 lg:grid-cols-2">
+              {basicLanguage.map((entry, index) => (
+                <GlossaryCard key={entry.term} term={entry.term} definition={entry.definition} index={index} />
+              ))}
+            </div>
+          </section>
+
           <section id="legal-home" className="mb-8 space-y-6">
             <SectionHeader
-              title="Règlement RP Légal"
+              title="Règlement RP légal"
               subtitle="Forces de l’ordre, EMS, entreprise et activités légales."
               icon="⚖️"
             />
@@ -302,7 +415,7 @@ export default function App() {
 
           <section id="entreprise" className="mb-8 space-y-6">
             <SectionHeader
-              title="Règlement Entreprise"
+              title="Règlement entreprise"
               subtitle="Patrons, employés, mécanos, concessionnaires et ventes d’occasion."
               icon="🏢"
             />
@@ -310,6 +423,7 @@ export default function App() {
               <RuleCard title="Général" items={entreprise.general} />
               <RuleCard title="Mécano" items={entreprise.mecano} />
               <RuleCard title="Concessionnaire" items={entreprise.concessionnaire} />
+              <RuleCard title="Occasion" items={entreprise.occasion} />
             </div>
           </section>
 
@@ -326,13 +440,21 @@ export default function App() {
             <RuleCard title="Pêche" items={peche} />
           </section>
 
-          <section id="boucheron" className="mb-8">
+          <section id="acier" className="mb-8">
+            <RuleCard title="Acier / Mine" items={acier} />
+          </section>
+
+          <section id="scierie" className="mb-8">
             <RuleCard title="Scierie" items={scierie} />
+          </section>
+
+          <section id="course" className="mb-8">
+            <RuleCard title="Course" items={course} />
           </section>
 
           <section id="illegal-home" className="mb-8 space-y-6 border-t border-cyan-500/10 pt-8">
             <SectionHeader
-              title="Règlement RP Illégal"
+              title="Règlement RP illégal"
               subtitle="Vue d’ensemble, îles et activités illégales."
               icon="🔫"
             />
@@ -454,6 +576,28 @@ function RuleCard({ title, items }) {
             <p className="text-sm leading-6 text-slate-300">{item}</p>
           </div>
         ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function GlossaryCard({ term, definition, index }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.25, delay: index * 0.02 }}
+      className="rounded-2xl border border-cyan-500/20 bg-[#0d1624]/90 p-5 shadow-xl"
+    >
+      <div className="flex items-start gap-3">
+        <div className="rounded-xl bg-cyan-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">
+          Terme
+        </div>
+        <div>
+          <h4 className="text-lg font-semibold text-white">{term}</h4>
+          <p className="mt-2 text-sm leading-6 text-slate-300">{definition}</p>
+        </div>
       </div>
     </motion.div>
   );
