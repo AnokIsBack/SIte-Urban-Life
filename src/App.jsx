@@ -124,7 +124,7 @@ const entreprise = {
 
 const legalActivities = [
   "La section légale inclut plusieurs activités accessibles côté civil.",
-  "Exemples visibles depuis la navigation : pêche, Boucheron , Mine",
+  "Exemples visibles depuis la navigation : pêche, Boucheron, Mine",
   "Chaque activité doit être jouée proprement, sans abus de farm ni détournement HRP.",
 ];
 
