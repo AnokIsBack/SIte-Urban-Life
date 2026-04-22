@@ -310,7 +310,6 @@ export default function App() {
               <RuleCard title="Général" items={entreprise.general} />
               <RuleCard title="Mécano" items={entreprise.mecano} />
               <RuleCard title="Concessionnaire" items={entreprise.concessionnaire} />
-              <RuleCard title="Occasion" items={entreprise.occasion} />
             </div>
           </section>
 
@@ -327,12 +326,8 @@ export default function App() {
             <RuleCard title="Pêche" items={peche} />
           </section>
 
-          <section id="scierie" className="mb-8">
+          <section id="boucheron" className="mb-8">
             <RuleCard title="Scierie" items={scierie} />
-          </section>
-
-          <section id="course" className="mb-8">
-            <RuleCard title="Course" items={course} />
           </section>
 
           <section id="illegal-home" className="mb-8 space-y-6 border-t border-cyan-500/10 pt-8">
