@@ -128,7 +128,7 @@ const legalActivities = [
   "Chaque activité doit être jouée proprement, sans abus de farm ni détournement HRP.",
 ];
 
-const pêche = [
+const peche = [
   "Pour commencer, il faut acheter une canne à pêche dans les LTD de la ville.",
   "La canne en bois est vendue dans tout les Ltd pour 250 000 $.",
   "La canne en aluminium est vendue dans tout les Ltd pour 900 000 $.",
