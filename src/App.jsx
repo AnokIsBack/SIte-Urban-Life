@@ -98,11 +98,9 @@ const lspd = {
 
 const ems = [
   "Interdiction d’utiliser son service EMS pour participer à de l’illégal.",
-  "Interdiction de vendre ou échanger medikits et bandages.",
   "Interdiction d’intervenir sur une scène illégale pendant les tirs.",
   "La tenue de service est obligatoire.",
   "Le protocole d’intervention doit être respecté.",
-  "Une ATA de 10 minutes est prévue pour les morts par arme.",
   "En fin de service, le matériel doit être rangé dans le coffre de l’entreprise.",
 ];
 
@@ -122,54 +120,38 @@ const entreprise = {
     "Interdiction d’offrir un véhicule gratuitement sans procédure ou autorisation.",
     "Toute acquisition doit être cohérente et payée.",
   ],
-  occasion: [
-    "L’acheteur doit connaître le contenu du coffre avant la vente.",
-    "Certains véhicules de fonction ne sont pas revendables librement.",
-  ],
 };
 
 const legalActivities = [
   "La section légale inclut plusieurs activités accessibles côté civil.",
-  "Exemples visibles depuis la navigation : pêche, acier, scierie et course.",
+  "Exemples visibles depuis la navigation : pêche, Boucheron , Mine",
   "Chaque activité doit être jouée proprement, sans abus de farm ni détournement HRP.",
 ];
 
-const peche = [
+const pêche = [
   "Pour commencer, il faut acheter une canne à pêche dans les LTD de la ville.",
   "La canne en bois est vendue dans tout les Ltd pour 250 000 $.",
   "La canne en aluminium est vendue dans tout les Ltd pour 900 000 $.",
   "La canne Urban est vendue dans tout les Ltd pour 1 200 000 $.",
 ];
 
-const scierie = [
+const boucheron = [
   "L’activité scierie fonctionne avec un système de récolte de bois.",
   "Le bois doit être transformé avant d’être vendu.",
   "Les véhicules doivent être utilisés de manière cohérente pour transporter les ressources.",
   "Le farming en groupe doit rester réaliste et non abusif.",
 ];
 
-const course = [
-  "Les courses doivent être organisées de manière RP.",
-  "Les paris doivent rester raisonnables et cohérents.",
-  "Le fair-play est obligatoire.",
-  "Les collisions volontaires sont interdites sauf si justifiées RP.",
-];
-
 const illegalGeneral = [
   "Toute scène commencée doit être jouée jusqu’à son terme.",
   "En cas de problème, il faut terminer la scène puis faire un ticket ou un report.",
-  "Toute personne en scène illégale doit rester masquée.",
   "Le fear RP doit être joué obligatoirement.",
-  "Les tirs sont réservés aux personnes disposant d’un rôle illégal.",
-  "Les sommations se font avec 10 balles en l’air, hors véhicule et sans silencieux.",
+  "Les sommations se font avec 1 balles en l’air, hors véhicule et sans silencieux.",
 ];
 
 const iles = [
-  "Le gouverneur de Cayo dispose de pouvoirs importants sur son île.",
-  "Entrer sur Cayo sans pass est interdit et expose à une mort RP.",
   "La LSPD / BCSO ne peut pas se rendre sur Cayo.",
-  "Le groupe résidant à RoxWood peut contrôler les accès et sorties.",
-  "Les EMS sont autorisés à entrer sur RoxWood sur présentation de leur carte.",
+  "Les EMS sont autorisés à entrer sur Cayo sur présentation de leur carte.",
 ];
 
 const activitesIllegales = [
@@ -180,8 +162,6 @@ const activitesIllegales = [
 const drogues = [
   "Les points de drogue et points de vente sont centraux dans l’économie illégale.",
   "Posséder ou revendiquer une zone passe par la vente de drogue sur cette zone.",
-  "Vendre de la drogue rapporte des points de zone au groupe et de l’argent sale au joueur.",
-  "Certaines zones de vente sont réservées à des gangs ou organisations spécifiques.",
 ];
 
 const pacific = [
@@ -192,7 +172,6 @@ const pacific = [
 
 const bijouterie = [
   "La bijouterie peut rapporter une grosse somme d’argent sale si toutes les étapes sont réussies.",
-  "Du matériel précis est nécessaire pour lancer l’activité.",
   "Après le braquage, l’équipe doit encore gérer la fuite et la pression policière.",
 ];
 
@@ -216,7 +195,6 @@ const fourgon = [
 
 const cambriolage = [
   "Chaque joueur peut réaliser un cambriolage par jour.",
-  "Pour lancer un cambriolage, il faut un lockpick et un tournevis.",
   "Le bruit peut réveiller un PNJ qui peut appeler la police.",
   "Les objets volés doivent ensuite être revendus au point prévu.",
 ];
