@@ -20,7 +20,6 @@ const navGroups = [
       { href: "#peche", label: "Pêche", icon: "🐟" },
       { href: "#acier", label: "Acier / Mine", icon: "⛏️" },
       { href: "#scierie", label: "Scierie", icon: "🪵" },
-      { href: "#course", label: "Course", icon: "🏁" },
     ],
   },
   {
