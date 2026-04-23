@@ -232,12 +232,6 @@ const scierie = [
   "Le farming en groupe doit rester réaliste et non abusif.",
 ];
 
-const course = [
-  "Les courses doivent rester RP et ne pas devenir un prétexte à la destruction gratuite ou au troll.",
-  "Le fair-play est attendu entre les participants.",
-  "Toute course organisée doit respecter les règles générales du serveur.",
-];
-
 const illegalGeneral = [
   "Toute scène commencée doit être jouée jusqu’à son terme.",
   "En cas de problème, il faut terminer la scène puis faire un ticket ou un report.",
@@ -446,10 +440,6 @@ export default function App() {
 
           <section id="scierie" className="mb-8">
             <RuleCard title="Scierie" items={scierie} />
-          </section>
-
-          <section id="course" className="mb-8">
-            <RuleCard title="Course" items={course} />
           </section>
 
           <section id="illegal-home" className="mb-8 space-y-6 border-t border-cyan-500/10 pt-8">
